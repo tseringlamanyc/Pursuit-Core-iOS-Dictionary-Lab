@@ -33,7 +33,7 @@ for (key, _) in applesDict {
 }
 
 for (_, value) in applesDict {
-   assert(value == 0, "Was expecting 0, but got \(value)")
+    assert(value == 0, "Was expecting 0, but got \(value)")
 }
 
 // Question Two
@@ -46,7 +46,7 @@ var citiesDict: [String: String] = ["Afghanistan": "Kabul",
 
 let russiaCapital = citiesDict["Russia"]
 assert(russiaCapital == "Moscow", "Was expecting Moscow, but got \(russiaCapital)")
-    
+
 // b. Add a new key value pair "Jamaica" and its capital "Kingston"
 
 citiesDict["Jamaica"] = "Kingston"
@@ -64,14 +64,14 @@ assert(citiesDict["Indonesia"] == "Jakarta", "Was expecting Jakarta, but got \(S
 // a. Create a dictionary that represents the table below listing an authors name and their comprehensibility score.
 
 /*
-| Author Name |    Score |
-| :--: | :--: |
-| Mark Twain |    8.9 |
-| Nathaniel Hawthorne    | 5.1 |
-| John Steinbeck    | 2.3 |
-| C.S. Lewis | 9.9 |
-| Jon Krakauer | 6.1 |
-*/
+ | Author Name |    Score |
+ | :--: | :--: |
+ | Mark Twain |    8.9 |
+ | Nathaniel Hawthorne    | 5.1 |
+ | John Steinbeck    | 2.3 |
+ | C.S. Lewis | 9.9 |
+ | Jon Krakauer | 6.1 |
+ */
 
 var authorScores = [String: Double] ()
 
@@ -126,10 +126,22 @@ var peopleWithScores: [[String: String]] = [
 ]
 
 var highestScoringName = ""
+var highestScore = 0
 
-// Your code here
+for things in peopleWithScores {
+    let scoreString = things["score"] ?? "0"
+    let scoreInt = Int(scoreString) ?? 0
+    if scoreInt > highestScore { // 13 > 0
+        highestScore = scoreInt
+        let firstName = things["firstName"] ?? "first"
+        let lastName = things["lastName"] ?? "last"
+        highestScoringName = firstName + " " + lastName
+    }
+}
+print("The name of the best scorer is \(highestScoringName)")
 
-//assert(highestScoringName == "Garry Mckenzie", "Was expecting Garry Mckenzie, but got \(highestScoringName)")
+
+assert(highestScoringName == "Garry Mckenzie", "Was expecting Garry Mckenzie, but got \(highestScoringName)")
 
 // Question Five
 
@@ -137,8 +149,12 @@ var highestScoringName = ""
 // 2 ^ 3 = 2 * 2 * 2 = 8
 
 var cubeDict: [Int: Int] = [:]
+var cubedValue = 0
 
-cubeDict = [1: 1, 2: 8, 3: 27, 4: 64, 5: 125, 6: 216, 7: 343, 8: 512, 9: 729, 10: 1000, 11: 1331, 12: 1728, 13: 2197, 14: 2744, 15: 3375, 16: 4096, 17: 4913, 18: 5832, 19: 6859, 20: 8000]
+for num in 1...20 {
+    cubedValue = (num * num * num)
+    cubeDict[num] = cubedValue
+}
 
 assert(cubeDict.count == 20, "Was expecting 20, but got \(cubeDict.count)")
 assert(cubeDict[1] == 1, "Was expecting 1, but got \(String(describing: cubeDict[1]))")
@@ -152,19 +168,17 @@ assert(cubeDict[20] == 8000, "Was expecting 8000, but got \(String(describing: c
 
 // Find the most common letter in the string below.  Use a dictionary to generate your solution that maps a character to the number of times it appears in the string.  Ignore whitespaces and capitalization.
 
- var myString = "We're flooding people with information. We need to feed it through a processor. A human must turn information into intelligence or knowledge. We've tended to forget that no computer will ever ask a new question."
+var myString = "We're flooding people with information. We need to feed it through a processor. A human must turn information into intelligence or knowledge. We've tended to forget that no computer will ever ask a new question."
 
 var frequencyDict: [Character: Int] = [:]
 
 var mostFrequentChar: Character = "?"
+var mostCharacter = 0
 
-frequencyDict = ["e": 25, "o": 19, "t": 17, "n": 16, "i": 12,"r": 11, "l": 7, "a": 7, "d": 6, "u": 6, "f": 5, "g": 5, "h": 5, "m": 5, "s": 5, "p": 4, "w": 4, "c": 3, "k": 2, "v": 2, "q": 1]
-
-for (char, freq) in frequencyDict {
-    if freq == 25 {
-    mostFrequentChar = char
-    print(mostFrequentChar)
+for wordcount in myString {
+    for (char, freq) in frequencyDict {
+        
     }
 }
 
-assert(mostFrequentChar == "e", "Was expecting e, but got \(mostFrequentChar)")
+//assert(mostFrequentChar == "e", "Was expecting e, but got \(mostFrequentChar)")
