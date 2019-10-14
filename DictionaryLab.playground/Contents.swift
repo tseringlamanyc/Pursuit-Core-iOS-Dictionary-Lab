@@ -173,12 +173,25 @@ var myString = "We're flooding people with information. We need to feed it throu
 var frequencyDict: [Character: Int] = [:]
 
 var mostFrequentChar: Character = "?"
-var mostCharacter = 0
+var ignoredChar = ""
 
-for wordcount in myString {
-    for (char, freq) in frequencyDict {
-        
-    }
+for char in myString {
+    if char.isWhitespace || char.isPunctuation { continue }
+    ignoredChar += String(char) }
+
+for char in ignoredChar {
+    if let count = frequencyDict[char] {
+        frequencyDict[char] = count + 1
+    } else {
+        frequencyDict[char] = 1
+}
 }
 
-//assert(mostFrequentChar == "e", "Was expecting e, but got \(mostFrequentChar)")
+var largestValue = 0
+for (key, value) in frequencyDict {
+    if value > largestValue {
+        largestValue = value
+        mostFrequentChar = key
+    }
+}
+assert(mostFrequentChar == "e", "Was expecting e, but got \(mostFrequentChar)")
